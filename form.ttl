@@ -1,4 +1,5 @@
 @prefix : <http://onto.fel.cvut.cz/ontologies/form/> .
+@prefix dc: <http://purl.org/dc/terms/> .
 @prefix doc: <http://onto.fel.cvut.cz/ontologies/documentation/> .
 @prefix form: <http://onto.fel.cvut.cz/ontologies/form/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -6,7 +7,6 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix dc: <http://purl.org/dc/terms/> .
 
 doc:answer a owl:Class ;
     rdfs:subClassOf form:entity .
@@ -18,10 +18,13 @@ doc:todo a owl:DatatypeProperty .
     owl:imports <http://onto.fel.cvut.cz/ontologies/documentation> .
 
 form:accepts a owl:ObjectProperty ;
-    rdfs:label "accepts" .
+    rdfs:label "accepts" ;
+    rdfs:domain form:condition ;
+    rdfs:range form:question-type .
 
 form:accepts-answer-value a owl:AnnotationProperty ;
-    rdfs:label "accepts value" .
+    rdfs:label "accepts value" ;
+    rdfs:domain form:condition .
 
 form:accepts-validation-value a owl:DatatypeProperty ;
     rdfs:label "accepts validation value" ;
@@ -29,11 +32,19 @@ form:accepts-validation-value a owl:DatatypeProperty ;
     rdfs:domain form:condition ;
     rdfs:range xsd:boolean .
 
+form:and-condition a owl:Class ;
+    rdfs:label "And condition" ;
+    dc:description "Operator to combine different conditions. If all of its sub-conditions are true this condition is evaluated as true." ;
+    rdfs:subClassOf form:condition .
+
 form:answer-origin a owl:Class ;
     rdfs:label "Answer origin" ;
     dc:description "Class of objects that are used to reconstruct how was a answer created." .
 
-form:answered-question rdfs:label "Represent question that was answered"@en ;
+form:answered-question a form:question-type,
+        owl:Class,
+        owl:NamedIndividual ;
+    rdfs:label "Represent question that was answered"@en ;
     rdfs:subClassOf doc:question .
 
 form:has-answer-origin a owl:ObjectProperty ;
@@ -87,15 +98,20 @@ form:has-question-origin a owl:ObjectProperty ;
     rdfs:domain doc:question ;
     rdfs:subPropertyOf form:has-origin .
 
+form:has-sub-condition a owl:ObjectProperty ;
+    rdfs:label "has sub-condition" ;
+    rdfs:domain form:condition ;
+    rdfs:range form:condition .
+
 form:has-subsection a owl:ObjectProperty ;
-    rdfs:label "has-subsection" .
+    rdfs:label "has subsection" .
 
 form:has-subtemplate a owl:ObjectProperty ;
     rdfs:domain form:section ;
     rdfs:range form:question-template .
 
 form:has-template a owl:ObjectProperty ;
-    rdfs:label "has-template" .
+    rdfs:label "has template" .
 
 form:has-template-origin a owl:ObjectProperty ;
     rdfs:label "has template origin" ;
@@ -104,7 +120,7 @@ form:has-template-origin a owl:ObjectProperty ;
     rdfs:subPropertyOf form:has-origin .
 
 form:has-template-relation a owl:ObjectProperty ;
-    rdfs:label "has-template-relation" .
+    rdfs:label "has template relation" .
 
 form:has-tested-question a owl:ObjectProperty ;
     rdfs:label "has tested question" ;
@@ -141,12 +157,20 @@ form:is-valid-answer a owl:ObjectProperty ;
     rdfs:domain form:condition ;
     rdfs:range doc:question .
 
-form:not-answered-question rdfs:label "Represent question that was not answered"@en ;
+form:not-answered-question a form:question-type,
+        owl:Class,
+        owl:NamedIndividual ;
+    rdfs:label "Represent question that was not answered"@en ;
     rdfs:subClassOf doc:question .
+
+form:not-condition a owl:Class ;
+    rdfs:label "Not condition" ;
+    dc:description "Operator negates related conditions. If sub-condition evaluates to true it evaluates to false and vice versa." ;
+    rdfs:subClassOf form:condition .
 
 form:or-condition a owl:Class ;
     rdfs:label "Or condition" ;
-    dc:description "Operator to combine different conditions. If any of its sub-conditions is true this condition is evaluated as true." ; 
+    dc:description "Operator to combine different conditions. If any of its sub-conditions is true this condition is evaluated as true." ;
     rdfs:subClassOf form:condition .
 
 form:positive-validation-condition a owl:Class ;
@@ -168,6 +192,8 @@ form:requires-answer-description-if a owl:ObjectProperty ;
     rdfs:domain doc:question ;
     rdfs:range form:condition .
 
+dc:description a owl:AnnotationProperty .
+
 form:entity a owl:Class ;
     rdfs:label "entity" ;
     rdfs:subClassOf owl:Thing .
@@ -176,20 +202,23 @@ form:section a owl:Class ;
     rdfs:subClassOf form:question-template .
 
 form:template-entity a owl:Class ;
-    rdfs:label "template-entity" ;
+    rdfs:label "template entity" ;
     rdfs:subClassOf owl:Thing .
 
 form:validation-result-condition a owl:Class ;
+    dc:description "" ;
     rdfs:subClassOf form:condition .
 
 form:has-origin a owl:ObjectProperty ;
     rdfs:label "has origin" ;
     dc:description "Defines entity from which this template was created." .
 
-form:condition a owl:Class ;
-    rdfs:label "Condition" ;
-    rdfs:subClassOf owl:Thing .
+form:question-type a owl:Class .
 
 form:question-template a owl:Class ;
     rdfs:subClassOf form:template-entity .
+
+form:condition a owl:Class ;
+    rdfs:label "Condition" ;
+    rdfs:subClassOf owl:Thing .
 
