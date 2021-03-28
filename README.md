@@ -1,4 +1,4 @@
-## s-forms-mode
+## s-forms-model
 
 Ontological model for s-forms.
 
