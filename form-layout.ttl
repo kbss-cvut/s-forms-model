@@ -4,6 +4,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
 
 <http://onto.fel.cvut.cz/ontologies/form-layout> a owl:Ontology ;
     owl:imports <http://onto.fel.cvut.cz/ontologies/form> ; 
@@ -19,17 +20,17 @@ form-lt:has-layout-class a owl:DatatypeProperty ;
 
 form-lt:has-required-value a owl:DatatypeProperty ;
     rdfs:label "has required value" ;
-    rdfs:comment "Question has required value" ;
+    dc:description "Question has required value" ;
     rdfs:range xsd:boolean .
 
 form-lt:is-disabled a owl:DatatypeProperty ;
     rdfs:label "is disabled" ;
-    rdfs:comment "Defines whether this question should be disabled" ;
+    dc:description "Defines whether this question should be disabled" ;
     rdfs:range xsd:boolean .
 
 form-lt:is-hidden a owl:DatatypeProperty ;
     rdfs:label "is hidden" ;
-    rdfs:comment "Defines whether this question should be hidden" ;
+    dc:description "Defines whether this question should be hidden" ;
     rdfs:range xsd:boolean .
 
 form-lt:outputValue a owl:DatatypeProperty ;

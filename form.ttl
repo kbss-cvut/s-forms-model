@@ -6,6 +6,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
 
 doc:answer a owl:Class ;
     rdfs:subClassOf form:entity .
@@ -24,20 +25,20 @@ form:accepts-answer-value a owl:AnnotationProperty ;
 
 form:accepts-validation-value a owl:DatatypeProperty ;
     rdfs:label "accepts validation value" ;
-    rdfs:comment "Defines which validation values (true/false) are permitted for the tested question." ;
+    dc:description "Defines which validation values (true/false) are permitted for the tested question." ;
     rdfs:domain form:condition ;
     rdfs:range xsd:boolean .
 
 form:answer-origin a owl:Class ;
     rdfs:label "Answer origin" ;
-    rdfs:comment "Class of objects that are used to reconstruct how was a answer created." .
+    dc:description "Class of objects that are used to reconstruct how was a answer created." .
 
 form:answered-question rdfs:label "Represent question that was answered"@en ;
     rdfs:subClassOf doc:question .
 
 form:has-answer-origin a owl:ObjectProperty ;
     rdfs:label "has answer origin" ;
-    rdfs:comment "Defines entity from which this answer was created." ;
+    dc:description "Defines entity from which this answer was created." ;
     rdfs:domain doc:question ;
     rdfs:subPropertyOf form:has-origin .
 
@@ -54,7 +55,7 @@ form:has-origin-path-id a owl:DatatypeProperty ;
 
 form:has-origin-type a owl:ObjectProperty ;
     rdfs:label "has origin" ;
-    rdfs:comment "Defines type of entity from which this template was created." .
+    dc:description "Defines type of entity from which this template was created." .
 
 form:has-possible-value a owl:ObjectProperty ;
     rdfs:label "has possible value" ;
@@ -66,23 +67,23 @@ form:has-possible-values-query a owl:DatatypeProperty ;
 
 form:has-preceding-question a owl:ObjectProperty ;
     rdfs:label "has preceding question" ;
-    rdfs:comment "Defines that this question follows (typicaly chronologically) specified question." ;
+    dc:description "Defines that this question follows (typicaly chronologically) specified question." ;
     rdfs:domain doc:question ;
     rdfs:range doc:question .
 
 form:has-preceding-template a owl:ObjectProperty ;
     rdfs:label "has preceding question template" ;
-    rdfs:comment "Defines that this question template follows (typicaly chronologically) specified question template." ;
+    dc:description "Defines that this question template follows (typicaly chronologically) specified question template." ;
     rdfs:domain form:question-template ;
     rdfs:range form:question-template .
 
 form:has-preceding-value a owl:ObjectProperty ;
     rdfs:label "has preceding question" ;
-    rdfs:comment "Defines that this answer value follows (typicaly chronologically) specified answer value." .
+    dc:description "Defines that this answer value follows (typicaly chronologically) specified answer value." .
 
 form:has-question-origin a owl:ObjectProperty ;
     rdfs:label "has question origin" ;
-    rdfs:comment "Defines entity from which this question was created." ;
+    dc:description "Defines entity from which this question was created." ;
     rdfs:domain doc:question ;
     rdfs:subPropertyOf form:has-origin .
 
@@ -98,7 +99,7 @@ form:has-template a owl:ObjectProperty ;
 
 form:has-template-origin a owl:ObjectProperty ;
     rdfs:label "has template origin" ;
-    rdfs:comment "Defines entity from which this template was created." ;
+    dc:description "Defines entity from which this template was created." ;
     rdfs:domain form:question-template ;
     rdfs:subPropertyOf form:has-origin .
 
@@ -107,7 +108,7 @@ form:has-template-relation a owl:ObjectProperty ;
 
 form:has-tested-question a owl:ObjectProperty ;
     rdfs:label "has tested question" ;
-    rdfs:comment "Determine which questions are tested for this condition. Multiple questions can be tested." ;
+    dc:description "Determine which questions are tested for this condition. Multiple questions can be tested." ;
     rdfs:domain form:condition ;
     rdfs:range doc:question .
 
@@ -116,27 +117,27 @@ form:has-unit a owl:DatatypeProperty ;
     rdfs:range xsd:string .
 
 form:inherits-template-from a owl:ObjectProperty ;
-    rdfs:comment "Subject inherits properties from its object, i.e. any question created by subject template must also have properties of object template." ;
+    dc:description "Subject inherits properties from its object, i.e. any question created by subject template must also have properties of object template." ;
     rdfs:domain form:question-template ;
     rdfs:range form:question-template .
 
 form:is-clone-of-question a owl:ObjectProperty ;
-    rdfs:comment "Question within subject of this relation is unmodifiable clone of question within object of this relation." ;
+    dc:description "Question within subject of this relation is unmodifiable clone of question within object of this relation." ;
     rdfs:domain doc:question ;
     rdfs:range doc:question .
 
 form:is-link-template-of a owl:ObjectProperty ;
-    rdfs:comment "Subject of this relation is a template relation (?s_qts_rel) that defines contract how any of its question should be created. Every question created using ?s_qts_rel must be only reference to other question created from ?o_qts_rel, i.e. template relation within object of this relation. Domain and range of this relation is of type reification of ?qt1 has-subtemplate ?qt2." .
+    dc:description "Subject of this relation is a template relation (?s_qts_rel) that defines contract how any of its question should be created. Every question created using ?s_qts_rel must be only reference to other question created from ?o_qts_rel, i.e. template relation within object of this relation. Domain and range of this relation is of type reification of ?qt1 has-subtemplate ?qt2." .
 
 form:is-relevant-if a owl:ObjectProperty ;
     rdfs:label "is relevant if" ;
-    rdfs:comment "States in which context is statement relevant." ;
+    dc:description "States in which context is statement relevant." ;
     rdfs:domain doc:question ;
     rdfs:range form:condition .
 
 form:is-valid-answer a owl:ObjectProperty ;
     rdfs:label "has valid answer" ;
-    rdfs:comment "Defines  set of answers that need to be valid in order for condition to hold." ;
+    dc:description "Defines  set of answers that need to be valid in order for condition to hold." ;
     rdfs:domain form:condition ;
     rdfs:range doc:question .
 
@@ -145,24 +146,25 @@ form:not-answered-question rdfs:label "Represent question that was not answered"
 
 form:or-condition a owl:Class ;
     rdfs:label "Or condition" ;
+    dc:description "Operator to combine different conditions. If any of its sub-conditions is true this condition is evaluated as true." ; 
     rdfs:subClassOf form:condition .
 
 form:positive-validation-condition a owl:Class ;
-    rdfs:comment "Indicates that accept answer value is only  \"true\" of this condition." ;
+    dc:description "Indicates that accept answer value is only  \"true\" of this condition." ;
     rdfs:subClassOf form:validation-result-condition .
 
 form:question-origin a owl:Class ;
     rdfs:label "Question origin" ;
-    rdfs:comment "Class of objects that are used to reconstruct how was a question created." .
+    dc:description "Class of objects that are used to reconstruct how was a question created." .
 
 form:requires-answer a owl:ObjectProperty ;
     rdfs:label "requires answer" ;
-    rdfs:comment "Indicates that question requires answer." ;
+    dc:description "Indicates that question requires answer." ;
     rdfs:domain doc:question .
 
 form:requires-answer-description-if a owl:ObjectProperty ;
     rdfs:label "requires answer description" ;
-    rdfs:comment "Answer requires descripton." ;
+    dc:description "Answer requires descripton." ;
     rdfs:domain doc:question ;
     rdfs:range form:condition .
 
@@ -182,7 +184,7 @@ form:validation-result-condition a owl:Class ;
 
 form:has-origin a owl:ObjectProperty ;
     rdfs:label "has origin" ;
-    rdfs:comment "Defines entity from which this template was created." .
+    dc:description "Defines entity from which this template was created." .
 
 form:condition a owl:Class ;
     rdfs:label "Condition" ;
