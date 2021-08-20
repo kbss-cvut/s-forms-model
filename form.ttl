@@ -17,6 +17,25 @@ doc:todo a owl:DatatypeProperty .
     rdfs:comment "Represent form data." ;
     owl:imports <http://onto.fel.cvut.cz/ontologies/documentation> .
 
+form:has-comment a owl:ObjectProperty ;
+    rdfs:domain form:question ;
+    rdfs:range form:comment ;
+.
+
+form:comment a owl:Class ;
+.
+form:author a  owl:Class ;
+.
+
+form:has-author a owl:ObjectProperty ;
+    rdfs:domain form:comment ;
+    rdfs:range form:author ;
+.
+
+form:has-timestamp a owl:ObjectProperty ;
+    rdfs:domain form:comment ;
+.
+
 form:accepts a owl:ObjectProperty ;
     rdfs:label "accepts" ;
     rdfs:domain form:condition ;
@@ -222,3 +241,101 @@ form:condition a owl:Class ;
     rdfs:label "Condition" ;
     rdfs:subClassOf owl:Thing .
 
+form:has-first-question a owl:ObjectProperty ;
+	rdfs:domain form:question-precedence ;
+	rdfs:range doc:question ;
+.
+
+form:has-second-question a owl:ObjectProperty ;
+	rdfs:domain form:question-precedence ;
+	rdfs:range doc:question ;
+.
+
+form:question-precedence a owl:Class, owl:NamedIndividual ;
+    rdfs:label "Relator of a precedence between two questions." ; 		
+.
+
+form:direct-precedence a owl:Class, owl:NamedIndividual ;
+    rdfs:label "Relator defining precedence between two questions based on explicit has-preceding-question relation." ; 		
+    rdfs:subClassOf form:question-precedence ;
+.
+
+form:language-variant-precedence a owl:Class, owl:NamedIndividual ;
+    rdfs:label "Relator defining precedence between two questions based on same question having different language variants." ; 		
+    rdfs:subClassOf form:question-precedence ;
+.
+
+form:relator-multiplicity-precedence a owl:Class, owl:NamedIndividual ;
+    rdfs:label "Relator defining precedence between two questions based on relator question with higher cardinality." ; 		
+    rdfs:subClassOf form:question-precedence ;
+.
+
+form:meta-question-precedence a owl:Class, owl:NamedIndividual ;
+    rdfs:label "Relator defining precedence between two questions where one of them is meta-question." ; 		
+    rdfs:subClassOf form:question-precedence ;
+.
+
+form:object-identification-precedence a owl:Class, owl:NamedIndividual ;
+    rdfs:label "Relator defining precedence between two questions where one of them is identifying trope of an entity." ; 		
+    rdfs:subClassOf form:question-precedence ;
+.
+
+form:object-description-precedence a owl:Class, owl:NamedIndividual ;
+    rdfs:label "Relator defining precedence between two questions where one of them is trope providing description of an entity." ; 		
+    rdfs:subClassOf form:question-precedence ;
+.
+
+form:aspect-type-precedence a owl:Class, owl:NamedIndividual ;
+    rdfs:label "Relator defining precedence between two questions that are either relator or intrinsic trope." ; 		
+    rdfs:subClassOf form:question-precedence ;
+.
+
+form:temporal-precedence a owl:Class, owl:NamedIndividual ;
+    rdfs:label "Relator defining precedence between two questions based on temporal properties of entities." ; 		
+    rdfs:subClassOf form:question-precedence ;
+.
+
+form:alphabethical-precedence a owl:Class, owl:NamedIndividual ;
+    rdfs:label "Relator defining precedence between two questions based on alphabethical order of its labels." ; 		
+    rdfs:subClassOf form:question-precedence ;
+.
+
+form:has-higher-priority-precedence a owl:ObjectProperty ;
+    rdfs:label "Defines priority of precedence types, the higher priority precedence should be ordered before the lower one." ;
+.
+
+form:object-identification-question a owl:Class ;
+    rdfs:subClassOf form:trope-question ;
+.
+
+form:object-identification-coordinate-question a owl:Class ;
+    rdfs:subClassOf form:trope-question ;
+.
+
+form:object-description-question a owl:Class ;
+    rdfs:subClassOf form:trope-question ;
+.
+
+form:trope-question a owl:Class ;
+    rdfs:subClassOf doc:question ;
+.
+
+form:multilingual-question a owl:Class ;
+    rdfs:subClassOf form:trope-question ;
+.
+
+form:multirelator-question a owl:Class ;
+    rdfs:subClassOf form:relator-question ;
+.
+
+form:relator-question a owl:Class ;
+    rdfs:subClassOf doc:question ;
+.
+
+form:meta-question a owl:Class ;
+    rdfs:subClassOf doc:question ;
+.
+
+form:temporally-related-question a owl:Class ;
+    rdfs:subClassOf doc:question ;
+.
