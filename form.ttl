@@ -28,12 +28,20 @@ form:author a  owl:Class ;
 .
 
 form:has-author a owl:ObjectProperty ;
+    rdfs:label "has author" ;
     rdfs:domain form:comment ;
     rdfs:range form:author ;
 .
 
 form:has-timestamp a owl:ObjectProperty ;
+    rdfs:label "has timestamp" ;
     rdfs:domain form:comment ;
+.
+
+form:has-comment-value a owl:DatatypeProperty ;
+    rdfs:label "has comment value" ;
+    rdfs:domain form:comment ;
+    rdfs:range xsd:string ;
 .
 
 form:accepts a owl:ObjectProperty ;
