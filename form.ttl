@@ -45,7 +45,7 @@ form:has-comment-value a owl:DatatypeProperty ;
 .
 
 form:textual-view a owl:DataProperty ;
-    dc:description "Defines a view on the question in textual form, which may also include textual views of its subquestions recursively."
+    dc:description "Defines a view on the question in textual form, which may also include textual views of its subquestions recursively." ;
     rdfs:domain doc:question ;
     rdfs:range xsd:string ;
 .
@@ -352,4 +352,10 @@ form:meta-question a owl:Class ;
 
 form:temporally-related-question a owl:Class ;
     rdfs:subClassOf doc:question ;
+.
+
+form:has-answer-hash
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain <http://onto.fel.cvut.cz/ontologies/documentation/answer> ;
+  rdfs:range xsd:string ;
 .
