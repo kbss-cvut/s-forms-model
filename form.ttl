@@ -356,6 +356,18 @@ form:temporally-related-question a owl:Class ;
 
 form:has-answer-hash
   rdf:type owl:DatatypeProperty ;
-  rdfs:domain <http://onto.fel.cvut.cz/ontologies/documentation/answer> ;
+  rdfs:domain doc:answer ;
   rdfs:range xsd:string ;
+.
+
+form:provides-dereferencable-answer-values
+  rdfs:comment "Indicates that answer values of this question can be dereferenced on the web" ;
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain doc:question ;
+  rdfs:range xsd:boolean ;
+.
+
+
+form:form-template a owl:Class ;
+    rdfs:label "Defines template of a form. It could be represented by root question (concrete form) that is used as template to create new forms." ;
 .
