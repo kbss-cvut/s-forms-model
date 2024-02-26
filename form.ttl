@@ -361,6 +361,12 @@ form:provides-dereferencable-answer-values
   rdfs:range xsd:boolean ;
 .
 
+form:used-only-for-completeness
+  rdfs:comment "Indicates that answer is required only for completeness of a form, i.e. it should be possible to save the form without answer to this question. The default value is false." ;
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain doc:question ;
+  rdfs:range xsd:boolean ;
+.
 
 form:form-template a owl:Class ;
     rdfs:label "Defines template of a form. It could be represented by root question (concrete form) that is used as template to create new forms." ;
