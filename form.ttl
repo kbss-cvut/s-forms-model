@@ -219,12 +219,6 @@ form:requires-answer a owl:ObjectProperty ;
     dc:description "Indicates that question requires answer." ;
     rdfs:domain doc:question .
 
-form:requires-answer-description-if a owl:ObjectProperty ;
-    rdfs:label "requires answer description" ;
-    dc:description "Answer requires descripton." ;
-    rdfs:domain doc:question ;
-    rdfs:range form:condition .
-
 dc:description a owl:AnnotationProperty .
 
 form:entity a owl:Class ;
