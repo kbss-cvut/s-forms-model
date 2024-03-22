@@ -354,7 +354,7 @@ form:has-answer-hash
   rdfs:range xsd:string ;
 .
 
-form:provides-dereferencable-answer-values
+form:provides-dereferenceable-answer-values
   rdfs:comment "Indicates that answer values of this question can be dereferenced on the web" ;
   rdf:type owl:DatatypeProperty ;
   rdfs:domain doc:question ;
